@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Smash Karts 3D</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+    <canvas id="game-canvas"></canvas>
+
+    <!-- LOBBY SCREEN -->
+    <div id="lobby-screen" class="screen">
+        <div class="lobby-header">
+            <h1 class="game-title">SMASH <span>KARTS</span> 3D</h1>
+            <p class="game-subtitle">ARENA PERTEMPURAN GOKART 3D</p>
+        </div>
+
+        <div class="lobby-card">
+            <div class="form-group">
+                <label for="player-name">NAMA PEMAIN</label>
+                <input type="text" id="player-name" maxlength="14" value="Pemain 1" placeholder="Masukkan nama...">
+            </div>
+
+            <div class="form-group">
+                <label>WARNA GOKART</label>
+                <div id="color-picker" class="picker-grid"></div>
+            </div>
+
+            <div class="form-group">
+                <label>TOPI KARAKTER</label>
+                <div id="hat-picker" class="hat-grid">
+                    <button class="hat-btn active" data-hat="helmet">Helm</button>
+                    <button class="hat-btn" data-hat="crown">Mahkota</button>
+                    <button class="hat-btn" data-hat="pirate">Bajak Laut</button>
+                    <button class="hat-btn" data-hat="viking">Viking</button>
+                </div>
+            </div>
+
+            <button id="play-btn" class="play-btn">MAIN SEKARANG</button>
+        </div>
+    </div>
+
+    <!-- IN-GAME HUD -->
+    <div id="hud" class="hud hidden">
+        <div class="hud-top">
+            <div class="hud-left">
+                <div class="timer-box">
+                    <span class="hud-label">WAKTU</span>
+                    <span id="timer-display" class="hud-value">03:00</span>
+                </div>
+                <div class="stats-box">
+                    <span>SKOR: <strong id="score-display">0</strong></span>
+                    <span>MATI: <strong id="deaths-display">0</strong></span>
+                </div>
+                <div class="health-bar-container">
+                    <div id="health-fill" class="health-fill"></div>
+                    <span id="health-text" class="health-text">100 HP</span>
+                </div>
+            </div>
+
+            <div class="hud-center">
+                <div id="weapon-slot" class="weapon-slot">
+                    <span id="weapon-icon" class="weapon-icon">?</span>
+                    <span id="weapon-name" class="weapon-name">KOSONG</span>
+                    <span id="weapon-ammo" class="weapon-ammo"></span>
+                </div>
+            </div>
+
+            <div class="hud-right">
+                <div class="leaderboard">
+                    <div class="lb-title">PERINGKAT</div>
+                    <ul id="leaderboard-list"></ul>
+                </div>
+                <button id="sound-btn" class="icon-btn" title="Suara">🔊</button>
+            </div>
+        </div>
+
+        <div id="kill-feed" class="kill-feed"></div>
+        <div id="banner-msg" class="banner-msg hidden"></div>
+
+        <!-- MOBILE CONTROLS -->
+        <div id="mobile-controls" class="mobile-controls">
+            <div class="dpad">
+                <button id="btn-left" class="ctrl-btn">◀</button>
+                <button id="btn-right" class="ctrl-btn">▶</button>
+            </div>
+            <div class="action-btns">
+                <button id="btn-fire" class="ctrl-btn fire">TEMBAK</button>
+                <button id="btn-brake" class="ctrl-btn brake">MUNDUR</button>
+                <button id="btn-gas" class="ctrl-btn gas">GAS</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- GAME OVER SCREEN -->
+    <div id="gameover-screen" class="screen hidden">
+        <div class="gameover-card">
+            <h2>PERTANDINGAN SELESAI</h2>
+            <p id="winner-text" class="winner-text">Pemenang: -</p>
+            <div class="final-standings">
+                <ul id="final-leaderboard"></ul>
+            </div>
+            <button id="rematch-btn" class="play-btn">MAIN LAGI</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
